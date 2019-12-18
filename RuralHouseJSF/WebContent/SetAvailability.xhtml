@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="Style.css" />
+		<title>Set Availability</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<table>
+				<tr>
+					<td>Rural House:</td>
+					<td><h:selectOneMenu id="ruralHouse"
+							value="#{setAvailability.ruralHouse}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{setAvailability.ruralHouses}" />
+						</h:selectOneMenu></td>
+					<td>Price:</td>
+					<td><h:inputText id="price" value="#{setAvailability.price}"
+							validatorMessage="Price must be a positive float" required="true">
+							<f:validateDoubleRange minimum="0" maximum="1000000" />
+							<p:ajax execute="price" render="messages" />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td>First day:</td>
+					<td><p:calendar id="firstDay"
+							value="#{setAvailability.firstDay}" navigator="true"
+							mode="inline">
+							<p:ajax event="dateSelect" update="firstDayText" />
+						</p:calendar></td>
+					<td>Last day:</td>
+					<td><p:calendar id="lastDay"
+							value="#{setAvailability.lastDay}" navigator="true" mode="inline">
+							<p:ajax event="dateSelect" update="lastDayText" />
+						</p:calendar></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><h:outputText id="firstDayText"
+							value="#{setAvailability.firstDay}">
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+						</h:outputText></td>
+					<td></td>
+					<td><h:outputText id="lastDayText"
+							value="#{setAvailability.lastDay}">
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+						</h:outputText></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton value="Accept" action="#{setAvailability.createOfferFacade}" class="btn btn-success"/>
+				&#160;	
+				<h:commandButton value="Sortu ofertak" action="#{setAvailability.createOfferAriketa}" class="btn btn-primary"/>
+				&#160;
+				<h:commandButton value="Cancel" action="menu" immediate="true" class="btn btn-danger"/>
+			
+			</p>
+			<h:messages id="messages" style="color:blue" />
+		</h:form>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-dic-2019 10:01:56 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="domain.Offer" table="OFFER">
+        <id name="offerNumber" type="java.lang.Integer" access="field">
+            <column name="OFFERNUMBER" />
+            <generator class="increment" />
+        </id>
+        <property name="firstDay" type="java.util.Date">
+            <column name="FIRSTDAY" />
+        </property>
+        <property name="lastDay" type="java.util.Date">
+            <column name="LASTDAY" />
+        </property>
+        <property name="price" type="float">
+            <column name="PRICE" />
+        </property>
+        <many-to-one name="ruralHouse" class="domain.RuralHouse" fetch="join" lazy="false">
+            <column name="RURALHOUSE" />
+        </many-to-one>
+        <many-to-one name="user" class="domain.User" access="field" fetch="join" lazy="false">
+            <column name="USER" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

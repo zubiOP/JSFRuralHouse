@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-dic-2019 10:01:56 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="domain.RuralHouse" table="RURALHOUSE">
+        <id name="houseNumber" type="java.lang.Integer">
+            <column name="HOUSENUMBER" />
+            <generator class="increment" />
+        </id>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <set name="offers" table="OFFER" inverse="false" lazy="false" access="field">
+            <key>
+                <column name="RURALHOUSE" />
+            </key>
+            <one-to-many class="domain.Offer" />
+        </set>
+    </class>
+</hibernate-mapping>

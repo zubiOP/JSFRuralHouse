@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="Style.css" />
+		<title>Rural Houses</title>
+	</h:head>
+	<h:body>
+		<b:navBar inverse="true">
+			<h:form>
+					<h:outputText value="Eposta: " lang="en" style="color: white"></h:outputText>
+					<h:inputText id="eposta" value="#{login.eposta}" required="true">
+				</h:inputText>
+					&#160;	
+					<h:outputText value="Pasahitza: " lang="en" style="color: white"></h:outputText>
+					<h:inputSecret id="pasahitza" redisplay="true"
+					value="#{login.pasahitza}">
+				</h:inputSecret>
+			&#160;	
+			<h:commandButton value="Login" action="#{login.login}" class="btn btn-warning"/>
+
+				<h:messages style="color:blue" />
+			</h:form>
+		</b:navBar>
+		<br></br>
+		<br></br>
+
+		<h:form>
+			<h1>Select options:</h1>
+			<h:commandButton value="Query Availability" action="query"
+				immediate="true" class="btn btn-primary" />
+				&#160;
+			<h:commandButton value="Register" action="register" immediate="true" class="btn btn-primary"/>
+			<h:messages />
+		</h:form>
+	</h:body>
+</f:view>
+</html>

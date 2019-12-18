@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="Style.css" />
+		<title>Query Availability</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<table>
+				<tr>
+					<td>Rural House:</td>
+					<td><h:selectOneMenu id="ruralHouse"
+							value="#{queryAvailability.ruralHouse}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{queryAvailability.ruralHouses}" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td>First day:</td>
+					<td><p:calendar id="firstDay"
+							value="#{queryAvailability.firstDay}" navigator="true"
+							mode="inline">
+							<p:ajax event="dateSelect" update="firstDayText" />
+						</p:calendar></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><h:outputText id="firstDayText"
+							value="#{queryAvailability.firstDay}">
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+						</h:outputText></td>
+				</tr>
+				<tr>
+					<td>Number of nights:</td>
+					<td><h:inputText id="numberOfNights"
+							value="#{queryAvailability.numberOfNights}"
+							validatorMessage="Number of nights must be a positive integer"
+							required="true">
+							<f:validateLongRange minimum="1" maximum="1000" />
+							<p:ajax execute="numberOfNights" render="messages" />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><p>
+							<h:commandButton value="Accept" disabled="#{queryAvailability.disableQuery}" action="#{queryAvailability.getOffersFacade}" class="btn btn-success"/>
+							&#160;
+							<h:commandButton value="Cancel" action="menu" immediate="true" class="btn btn-danger"/>
+						</p></td>
+				</tr>
+			</table>
+		</h:form>
+		<h:form>
+			<p:dataTable id="offers" value="#{queryAvailability.offers}"
+				var="offer" border="1" selection="#{queryAvailability.offer}"
+				rowKey="#{offer.offerNumber}" selectionMode="single" required="true">
+				<f:facet name="header">
+					<h:outputText value="Available offers" />
+				</f:facet>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Offer#" />
+					</f:facet>
+					<h:outputText value="#{offer.offerNumber}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Rural House" />
+					</f:facet>
+					<h:outputText value="#{offer.ruralHouse.houseNumber}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="First Day" />
+					</f:facet>
+					<h:outputText value="#{offer.firstDay}">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Last Day" />
+					</f:facet>
+					<h:outputText value="#{offer.lastDay}">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="CET" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Price" />
+					</f:facet>
+					<h:outputText value="#{offer.price}" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<h:panelGroup rendered="#{not empty user}">
+				<h:commandButton value="Erreserbatu" action="#{queryAvailability.bookOffer}" class="btn btn-success" />
+			</h:panelGroup>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

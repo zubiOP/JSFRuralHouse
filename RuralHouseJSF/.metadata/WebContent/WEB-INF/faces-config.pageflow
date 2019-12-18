@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15739970940740" configfile="/RuralHouseJSF/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Main.xhtml" x="338" y="370" id="pf15740142460851" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf15740142460852 pf15740142460853" inlinks="pf15740142460854 pf15740142460855" path="/Main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="QueryAvailability.xhtml" x="122" y="178" id="pf15740142460856" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15740142460854" inlinks="pf15740142460852" path="/QueryAvailability.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="SetAvailability.xhtml" x="122" y="562" id="pf15740142460857" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15740142460855" inlinks="pf15740142460853" path="/SetAvailability.xhtml"/>
+  <links id="pf15740142460852" target="pf15740142460856" source="pf15740142460851" outcome="query"/>
+  <links id="pf15740142460853" target="pf15740142460857" source="pf15740142460851" outcome="set"/>
+  <links id="pf15740142460854" target="pf15740142460851" source="pf15740142460856" outcome="menu"/>
+  <links id="pf15740142460855" target="pf15740142460851" source="pf15740142460857" outcome="menu"/>
+</pageflow:Pageflow>

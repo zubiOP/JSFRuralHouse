@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="Style.css" />
+		<title>Rural Houses</title>
+	</h:head>
+	<h:body>
+		<b:navBar inverse="true">
+			<h:panelGroup rendered="#{not empty user}">
+				<h:form>
+					<h:outputText value="#{user.eposta}" lang="en" style="color: white"></h:outputText>
+					&#160;
+					<h:commandButton value="Logout" action="#{login.logout}" />
+				</h:form>
+			</h:panelGroup>
+		</b:navBar>
+
+		<h:form>
+			<h:panelGroup rendered="#{not empty user}">
+				<h2>Kaixo, #{user.izena}</h2>
+			</h:panelGroup>
+			
+			<h1>Select options:</h1>
+			<h:button value="Set Availability" outcome="set" immediate="true" class="btn btn-primary"/>
+			&#160;
+			<h:button value="Book Offer" outcome="book" immediate="true" class="btn btn-primary"/>
+			<h:messages />
+		</h:form>
+	</h:body>
+</f:view>
+</html>

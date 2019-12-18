@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-dic-2019 10:01:56 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="domain.User" table="USER">
+        <id name="eposta" type="java.lang.String">
+            <column name="EPOSTA" />
+            <generator class="assigned" />
+        </id>
+        <property name="pasahitza" type="java.lang.String">
+            <column name="PASAHITZA" />
+        </property>
+        <property name="izena" type="java.lang.String">
+            <column name="izena" />
+        </property>
+        <property name="tel" type="java.lang.Integer">
+            <column name="TEL" />
+        </property>
+        <set name="offers" table="OFFER" inverse="false" lazy="false">
+            <key>
+                <column name="USER" />
+            </key>
+            <one-to-many class="domain.Offer" />
+        </set>
+    </class>
+</hibernate-mapping>
